@@ -15,6 +15,7 @@ pub enum NEpochs {
 #[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq)]
 pub struct Hyperparameters {
     /// The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset.
+    #[serde(default)]
     pub n_epochs: NEpochs,
 }
 
@@ -112,9 +113,9 @@ pub struct WandB {
 #[derive(Debug, Deserialize, Serialize, Clone, PartialEq)]
 pub struct FineTuneJobError {
     ///  A machine-readable error code.
-    pub code: String,
+    pub code: Option<String>,
     ///  A human-readable error message.
-    pub message: String,
+    pub message: Option<String>,
     /// The parameter that was invalid, usually `training_file` or `validation_file`.
     /// This field will be null if the failure was not parameter-specific.
     pub param: Option<String>, // nullable true
